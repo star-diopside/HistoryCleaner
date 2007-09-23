@@ -1,20 +1,47 @@
-using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.Win32;
 
 namespace HistoryCleaner
 {
-    class RegistryKeyFactory
+    /// <summary>
+    /// レジストリキー名からレジストリ操作に必要なオブジェクトを生成する。
+    /// </summary>
+    internal class RegistryKeyFactory
     {
+        private static RegistryKeyFactory _instance;
         private string _keyName;
         private RegistryKey _rootKey;
         private string _subKeyName;
 
-        public RegistryKeyFactory()
+        /// <summary>
+        /// RegistryKeyFactory クラスの新しいインスタンスの初期化を行う。
+        /// </summary>
+        private RegistryKeyFactory()
         {
+            // フィールドの初期化を行う。
+            this._keyName = "HKEY_CURRENT_USER";
+            this._rootKey = GetRegistryRootKey(this._keyName);
+            this._subKeyName = string.Empty;
         }
 
+        /// <summary>
+        /// RegistryKeyFactory クラスのインスタンスを取得する。
+        /// </summary>
+        public static RegistryKeyFactory Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new RegistryKeyFactory();
+                }
+                return _instance;
+            }
+        }
+
+        /// <summary>
+        /// ルートキーを含めたレジストリキー名の取得または設定を行う。
+        /// </summary>
         public string KeyName
         {
             get
@@ -23,42 +50,38 @@ namespace HistoryCleaner
             }
             set
             {
-                this._keyName = value;
-
                 // 設定されたキー名からルートの RegistryKey とサブキー名を設定する
-                if (this._keyName == null)
+                if (value == null)
                 {
-                    this._rootKey = null;
-                    this._subKeyName = null;
+                    throw new ArgumentNullException();
                 }
                 else
                 {
-                    int index = this._keyName.IndexOf('\\');
+                    int index = value.IndexOf('\\');
+
                     if (index == -1)
                     {
-                        this._rootKey = GetRegistryKey(this._keyName);
-                        this._subKeyName = (this._rootKey == null ? null : string.Empty);
+                        this._rootKey = GetRegistryRootKey(value);
+                        this._subKeyName = string.Empty;
                     }
                     else
                     {
-                        this._rootKey = GetRegistryKey(this._keyName.Substring(0, index));
-                        if (this._rootKey == null)
+                        this._rootKey = GetRegistryRootKey(value.Substring(0, index));
+                        while (index < value.Length && value[index] == '\\')
                         {
-                            this._subKeyName = null;
+                            index++;
                         }
-                        else
-                        {
-                            while (index < this._keyName.Length && this._keyName[index] == '\\')
-                            {
-                                index++;
-                            }
-                            this._subKeyName = this._keyName.Substring(index);
-                        }
+                        this._subKeyName = value.Substring(index);
                     }
+
+                    this._keyName = value;
                 }
             }
         }
 
+        /// <summary>
+        /// ルートキーを表す RegistryKey オブジェクトを取得する。
+        /// </summary>
         public RegistryKey RootKey
         {
             get
@@ -67,6 +90,9 @@ namespace HistoryCleaner
             }
         }
 
+        /// <summary>
+        /// ルートキーを含めないレジストリキー名を取得する。
+        /// </summary>
         public string SubKeyName
         {
             get
@@ -75,7 +101,12 @@ namespace HistoryCleaner
             }
         }
 
-        public static RegistryKey GetRegistryKey(string rootKeyName)
+        /// <summary>
+        /// ルートキー名から RegistryKey オブジェクトを取得する。
+        /// </summary>
+        /// <param name="rootKeyName">ルートキー名</param>
+        /// <returns>ルートキーを表す RegistryKey オブジェクト</returns>
+        private static RegistryKey GetRegistryRootKey(string rootKeyName)
         {
             RegistryKey key;
 
@@ -110,8 +141,7 @@ namespace HistoryCleaner
                     break;
 
                 default:
-                    key = null;
-                    break;
+                    throw new ArgumentException();
             }
 
             return key;

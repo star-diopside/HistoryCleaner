@@ -1,10 +1,5 @@
-using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
@@ -24,26 +19,23 @@ namespace HistoryCleaner
 
         private void buttonExecute_Click(object sender, EventArgs e)
         {
-            RegistryKeyFactory factory = new RegistryKeyFactory();
+            RegistryKeyFactory factory = RegistryKeyFactory.Instance;
             StringBuilder sb = new StringBuilder();
 
-            foreach (ListViewItem item in listViewRegKey.Items)
+            foreach (ListViewItem item in listViewRegKey.CheckedItems)
             {
-                if (item.Checked)
-                {
-                    factory.KeyName = item.SubItems[1].Text;
+                factory.KeyName = item.SubItems[1].Text;
 
-                    try
-                    {
-                        factory.RootKey.DeleteSubKeyTree(factory.SubKeyName);
-                        sb.AppendFormat("{0}\\{1} ÇçÌèúÇµÇ‹ÇµÇΩÅB", factory.RootKey.Name, factory.SubKeyName);
-                    }
-                    catch (Exception ex)
-                    {
-                        sb.AppendFormat("{0} : {1}\\{2}", ex.Message, factory.RootKey.Name, factory.SubKeyName);
-                    }
-                    sb.AppendLine();
+                try
+                {
+                    factory.RootKey.DeleteSubKeyTree(factory.SubKeyName);
+                    sb.AppendFormat("{0}\\{1} ÇçÌèúÇµÇ‹ÇµÇΩÅB", factory.RootKey.Name, factory.SubKeyName);
                 }
+                catch (Exception ex)
+                {
+                    sb.AppendFormat("{0} : {1}\\{2}", ex.Message, factory.RootKey.Name, factory.SubKeyName);
+                }
+                sb.AppendLine();
             }
 
             textLog.Text = sb.ToString();
