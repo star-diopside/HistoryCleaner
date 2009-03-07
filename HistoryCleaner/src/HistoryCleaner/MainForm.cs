@@ -12,6 +12,28 @@ namespace HistoryCleaner
             InitializeComponent();
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            // リストビューをクリアする
+            listViewRegKey.Items.Clear();
+
+            if (Properties.Settings.Default.TargetKeys != null)
+            {
+                // 設定ファイルの情報をリストビューに追加する
+                foreach (RegistryKeyInfo info in Properties.Settings.Default.TargetKeys)
+                {
+                    ListViewItem item = new ListViewItem(info.Description);
+                    item.SubItems.Add(info.KeyName);
+                    listViewRegKey.Items.Add(item);
+                }
+
+                // 列幅を自動調整する
+                listViewRegKey.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
+        }
+
         private void FormClose(object sender, EventArgs e)
         {
             Close();

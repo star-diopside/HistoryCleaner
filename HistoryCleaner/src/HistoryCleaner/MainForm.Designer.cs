@@ -29,33 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Visual C++ 6.0 の MFC AppWizard がデフォルトで使用するレジストリを削除",
-            "HKEY_CURRENT_USER\\Software\\Local AppWizard-Generated Applications"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "タスクマネージャの設定初期化 (Windows NT/2000/XP)",
-            "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows NT\\CurrentVersion\\TaskManager"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "レジストリエディタの設定初期化",
-            "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Applets\\Regedit"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
-            "[ファイル名を指定して実行] の履歴を削除",
-            "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RunMRU"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
-            "ファイル選択ダイアログの履歴を削除 (Windows 2000/Me/XP)",
-            "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ComDlg32"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
-            "メモ帳の設定初期化",
-            "HKEY_CURRENT_USER\\Software\\Microsoft\\Notepad"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
-            "ペイントの設定初期化",
-            "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Applets\\Paint"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
-            "ワードパットの設定初期化",
-            "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Applets\\Wordpad"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Internet Explorer の印刷ページ設定初期化",
-            "HKEY_CURRENT_USER\\Software\\Microsoft\\Internet Explorer\\PageSetup"}, -1);
             this.buttonExecute = new System.Windows.Forms.Button();
             this.buttonOpenRegedit = new System.Windows.Forms.Button();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
@@ -77,7 +50,8 @@
             // 
             // buttonExecute
             // 
-            this.buttonExecute.Location = new System.Drawing.Point(478, 180);
+            this.buttonExecute.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.buttonExecute.Location = new System.Drawing.Point(571, 181);
             this.buttonExecute.Name = "buttonExecute";
             this.buttonExecute.Size = new System.Drawing.Size(75, 23);
             this.buttonExecute.TabIndex = 0;
@@ -87,7 +61,8 @@
             // 
             // buttonOpenRegedit
             // 
-            this.buttonOpenRegedit.Location = new System.Drawing.Point(448, 93);
+            this.buttonOpenRegedit.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.buttonOpenRegedit.Location = new System.Drawing.Point(545, 29);
             this.buttonOpenRegedit.Name = "buttonOpenRegedit";
             this.buttonOpenRegedit.Size = new System.Drawing.Size(150, 23);
             this.buttonOpenRegedit.TabIndex = 2;
@@ -101,7 +76,7 @@
             this.menuFile});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
-            this.mainMenuStrip.Size = new System.Drawing.Size(610, 26);
+            this.mainMenuStrip.Size = new System.Drawing.Size(707, 26);
             this.mainMenuStrip.TabIndex = 3;
             // 
             // menuFile
@@ -140,28 +115,9 @@
             this.columnDescription,
             this.columnRegKey});
             this.listViewRegKey.ContextMenuStrip = this.contextRegKey;
-            listViewItem1.StateImageIndex = 0;
-            listViewItem2.StateImageIndex = 0;
-            listViewItem3.StateImageIndex = 0;
-            listViewItem4.StateImageIndex = 0;
-            listViewItem5.StateImageIndex = 0;
-            listViewItem6.StateImageIndex = 0;
-            listViewItem7.StateImageIndex = 0;
-            listViewItem8.StateImageIndex = 0;
-            listViewItem9.StateImageIndex = 0;
-            this.listViewRegKey.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9});
-            this.listViewRegKey.Location = new System.Drawing.Point(12, 27);
+            this.listViewRegKey.Location = new System.Drawing.Point(12, 29);
             this.listViewRegKey.Name = "listViewRegKey";
-            this.listViewRegKey.Size = new System.Drawing.Size(430, 217);
+            this.listViewRegKey.Size = new System.Drawing.Size(527, 258);
             this.listViewRegKey.TabIndex = 4;
             this.listViewRegKey.UseCompatibleStateImageBehavior = false;
             this.listViewRegKey.View = System.Windows.Forms.View.Details;
@@ -169,7 +125,6 @@
             // columnDescription
             // 
             this.columnDescription.Text = "説明";
-            this.columnDescription.Width = 390;
             // 
             // columnRegKey
             // 
@@ -210,11 +165,11 @@
             this.textLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textLog.Location = new System.Drawing.Point(12, 250);
+            this.textLog.Location = new System.Drawing.Point(12, 293);
             this.textLog.Multiline = true;
             this.textLog.Name = "textLog";
             this.textLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textLog.Size = new System.Drawing.Size(586, 75);
+            this.textLog.Size = new System.Drawing.Size(683, 107);
             this.textLog.TabIndex = 5;
             this.textLog.WordWrap = false;
             // 
@@ -222,9 +177,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(610, 337);
-            this.Controls.Add(this.textLog);
+            this.ClientSize = new System.Drawing.Size(707, 412);
             this.Controls.Add(this.listViewRegKey);
+            this.Controls.Add(this.textLog);
             this.Controls.Add(this.buttonOpenRegedit);
             this.Controls.Add(this.buttonExecute);
             this.Controls.Add(this.mainMenuStrip);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using MyLib.CustomControls;
 
 namespace HistoryCleaner
 {
@@ -12,7 +11,7 @@ namespace HistoryCleaner
         [STAThread]
         static void Main()
         {
-            ToolStripManager.Renderer = new ToolStripProfessionalRenderer(new ToolStripColorTable());
+            ToolStripManager.VisualStylesEnabled = false;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
