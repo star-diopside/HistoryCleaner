@@ -10,6 +10,7 @@ namespace HistoryCleaner
         public MainForm()
         {
             InitializeComponent();
+            this.Font = SystemInformation.MenuFont;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -34,12 +35,18 @@ namespace HistoryCleaner
             }
         }
 
-        private void FormClose(object sender, EventArgs e)
+        /// <summary>
+        /// フォームを閉じるイベント
+        /// </summary>
+        private void FormCloseEvent(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void buttonExecute_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 処理実行イベント
+        /// </summary>
+        private void ExecuteEvent(object sender, EventArgs e)
         {
             RegistryKeyFactory factory = RegistryKeyFactory.Instance;
             StringBuilder sb = new StringBuilder();
@@ -63,7 +70,10 @@ namespace HistoryCleaner
             textLog.Text = sb.ToString();
         }
 
-        private void ExecuteRegedit(object sender, EventArgs e)
+        /// <summary>
+        /// レジストリエディタ起動イベント
+        /// </summary>
+        private void ExecuteRegeditEvent(object sender, EventArgs e)
         {
             try
             {
@@ -76,7 +86,10 @@ namespace HistoryCleaner
             }
         }
 
-        private void menuAllSelect_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 全選択イベント
+        /// </summary>
+        private void SelectAllEvent(object sender, EventArgs e)
         {
             foreach (ListViewItem item in listViewRegKey.Items)
             {
@@ -84,7 +97,10 @@ namespace HistoryCleaner
             }
         }
 
-        private void menuReleaseAllSelection_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 全選択解除イベント
+        /// </summary>
+        private void ReleaseAllSelectionEvent(object sender, EventArgs e)
         {
             foreach (ListViewItem item in listViewRegKey.Items)
             {
@@ -92,7 +108,10 @@ namespace HistoryCleaner
             }
         }
 
-        private void menuReverseAllSelection_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 全選択切り替えイベント
+        /// </summary>
+        private void ReverseAllSelectionEvent(object sender, EventArgs e)
         {
             foreach (ListViewItem item in listViewRegKey.Items)
             {
