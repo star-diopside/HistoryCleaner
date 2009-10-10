@@ -284,7 +284,7 @@
             this.flowButton.Controls.Add(this.buttonExecute);
             this.flowButton.Controls.Add(this.buttonExit);
             this.flowButton.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowButton.Location = new System.Drawing.Point(807, 5);
+            this.flowButton.Location = new System.Drawing.Point(807, 8);
             this.flowButton.Name = "flowButton";
             this.flowButton.Size = new System.Drawing.Size(156, 174);
             this.flowButton.TabIndex = 1;
