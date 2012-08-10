@@ -1,10 +1,10 @@
-using System;
+ï»¿using System;
 using Microsoft.Win32;
 
 namespace HistoryCleaner
 {
     /// <summary>
-    /// ƒŒƒWƒXƒgƒŠƒL[–¼‚©‚çƒŒƒWƒXƒgƒŠ‘€ì‚É•K—v‚ÈƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
+    /// ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚­ãƒ¼åã‹ã‚‰ãƒ¬ã‚¸ã‚¹ãƒˆãƒªæ“ä½œã«å¿…è¦ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
     /// </summary>
     internal class RegistryKeyFactory
     {
@@ -14,18 +14,18 @@ namespace HistoryCleaner
         private string _subKeyName;
 
         /// <summary>
-        /// RegistryKeyFactory ƒNƒ‰ƒX‚ÌV‚µ‚¢ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì‰Šú‰»‚ğs‚¤B
+        /// RegistryKeyFactory ã‚¯ãƒ©ã‚¹ã®æ–°ã—ã„ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
         /// </summary>
         private RegistryKeyFactory()
         {
-            // ƒtƒB[ƒ‹ƒh‚Ì‰Šú‰»‚ğs‚¤B
+            // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
             this._keyName = "HKEY_CURRENT_USER";
             this._rootKey = GetRegistryRootKey(this._keyName);
             this._subKeyName = string.Empty;
         }
 
         /// <summary>
-        /// RegistryKeyFactory ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚éB
+        /// RegistryKeyFactory ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
         /// </summary>
         public static RegistryKeyFactory Instance
         {
@@ -40,7 +40,7 @@ namespace HistoryCleaner
         }
 
         /// <summary>
-        /// ƒ‹[ƒgƒL[‚ğŠÜ‚ß‚½ƒŒƒWƒXƒgƒŠƒL[–¼‚Ìæ“¾‚Ü‚½‚Íİ’è‚ğs‚¤B
+        /// ãƒ«ãƒ¼ãƒˆã‚­ãƒ¼ã‚’å«ã‚ãŸãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚­ãƒ¼åã®å–å¾—ã¾ãŸã¯è¨­å®šã‚’è¡Œã†ã€‚
         /// </summary>
         public string KeyName
         {
@@ -50,7 +50,7 @@ namespace HistoryCleaner
             }
             set
             {
-                // İ’è‚³‚ê‚½ƒL[–¼‚©‚çƒ‹[ƒg‚Ì RegistryKey ‚ÆƒTƒuƒL[–¼‚ğİ’è‚·‚é
+                // è¨­å®šã•ã‚ŒãŸã‚­ãƒ¼åã‹ã‚‰ãƒ«ãƒ¼ãƒˆã® RegistryKey ã¨ã‚µãƒ–ã‚­ãƒ¼åã‚’è¨­å®šã™ã‚‹
                 if (value == null)
                 {
                     throw new ArgumentNullException();
@@ -80,7 +80,7 @@ namespace HistoryCleaner
         }
 
         /// <summary>
-        /// ƒ‹[ƒgƒL[‚ğ•\‚· RegistryKey ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚éB
+        /// ãƒ«ãƒ¼ãƒˆã‚­ãƒ¼ã‚’è¡¨ã™ RegistryKey ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
         /// </summary>
         public RegistryKey RootKey
         {
@@ -91,7 +91,7 @@ namespace HistoryCleaner
         }
 
         /// <summary>
-        /// ƒ‹[ƒgƒL[‚ğŠÜ‚ß‚È‚¢ƒŒƒWƒXƒgƒŠƒL[–¼‚ğæ“¾‚·‚éB
+        /// ãƒ«ãƒ¼ãƒˆã‚­ãƒ¼ã‚’å«ã‚ãªã„ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚­ãƒ¼åã‚’å–å¾—ã™ã‚‹ã€‚
         /// </summary>
         public string SubKeyName
         {
@@ -102,10 +102,10 @@ namespace HistoryCleaner
         }
 
         /// <summary>
-        /// ƒ‹[ƒgƒL[–¼‚©‚ç RegistryKey ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚éB
+        /// ãƒ«ãƒ¼ãƒˆã‚­ãƒ¼åã‹ã‚‰ RegistryKey ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
         /// </summary>
-        /// <param name="rootKeyName">ƒ‹[ƒgƒL[–¼</param>
-        /// <returns>ƒ‹[ƒgƒL[‚ğ•\‚· RegistryKey ƒIƒuƒWƒFƒNƒg</returns>
+        /// <param name="rootKeyName">ãƒ«ãƒ¼ãƒˆã‚­ãƒ¼å</param>
+        /// <returns>ãƒ«ãƒ¼ãƒˆã‚­ãƒ¼ã‚’è¡¨ã™ RegistryKey ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</returns>
         private static RegistryKey GetRegistryRootKey(string rootKeyName)
         {
             RegistryKey key;

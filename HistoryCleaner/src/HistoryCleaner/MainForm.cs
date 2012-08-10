@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
@@ -17,12 +17,12 @@ namespace HistoryCleaner
         {
             base.OnLoad(e);
 
-            // ƒŠƒXƒgƒrƒ…[‚ğƒNƒŠƒA‚·‚é
+            // ãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
             listViewRegKey.Items.Clear();
 
             if (Properties.Settings.Default.TargetKeys != null)
             {
-                // İ’èƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğƒŠƒXƒgƒrƒ…[‚É’Ç‰Á‚·‚é
+                // è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’ãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã«è¿½åŠ ã™ã‚‹
                 foreach (RegistryKeyInfo info in Properties.Settings.Default.TargetKeys)
                 {
                     ListViewItem item = new ListViewItem(info.Description);
@@ -30,13 +30,13 @@ namespace HistoryCleaner
                     listViewRegKey.Items.Add(item);
                 }
 
-                // —ñ•‚ğ©“®’²®‚·‚é
+                // åˆ—å¹…ã‚’è‡ªå‹•èª¿æ•´ã™ã‚‹
                 listViewRegKey.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
         }
 
         /// <summary>
-        /// ƒtƒH[ƒ€‚ğ•Â‚¶‚éƒCƒxƒ“ƒg
+        /// ãƒ•ã‚©ãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
         /// </summary>
         private void FormCloseEvent(object sender, EventArgs e)
         {
@@ -44,7 +44,7 @@ namespace HistoryCleaner
         }
 
         /// <summary>
-        /// ˆ—ÀsƒCƒxƒ“ƒg
+        /// å‡¦ç†å®Ÿè¡Œã‚¤ãƒ™ãƒ³ãƒˆ
         /// </summary>
         private void ExecuteEvent(object sender, EventArgs e)
         {
@@ -58,7 +58,7 @@ namespace HistoryCleaner
                 try
                 {
                     factory.RootKey.DeleteSubKeyTree(factory.SubKeyName);
-                    sb.AppendFormat("{0}\\{1} ‚ğíœ‚µ‚Ü‚µ‚½B", factory.RootKey.Name, factory.SubKeyName);
+                    sb.AppendFormat("{0}\\{1} ã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚", factory.RootKey.Name, factory.SubKeyName);
                 }
                 catch (Exception ex)
                 {
@@ -71,7 +71,7 @@ namespace HistoryCleaner
         }
 
         /// <summary>
-        /// ƒŒƒWƒXƒgƒŠƒGƒfƒBƒ^‹N“®ƒCƒxƒ“ƒg
+        /// ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚¨ãƒ‡ã‚£ã‚¿èµ·å‹•ã‚¤ãƒ™ãƒ³ãƒˆ
         /// </summary>
         private void ExecuteRegeditEvent(object sender, EventArgs e)
         {
@@ -81,13 +81,13 @@ namespace HistoryCleaner
             }
             catch (Exception)
             {
-                MessageBox.Show("ƒŒƒWƒXƒgƒŠƒGƒfƒBƒ^‹N“®‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B",
-                                "ƒGƒ‰[", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚¨ãƒ‡ã‚£ã‚¿èµ·å‹•æ™‚ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚",
+                                "ã‚¨ãƒ©ãƒ¼", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         /// <summary>
-        /// ‘S‘I‘ğƒCƒxƒ“ƒg
+        /// å…¨é¸æŠã‚¤ãƒ™ãƒ³ãƒˆ
         /// </summary>
         private void SelectAllEvent(object sender, EventArgs e)
         {
@@ -98,7 +98,7 @@ namespace HistoryCleaner
         }
 
         /// <summary>
-        /// ‘S‘I‘ğ‰ğœƒCƒxƒ“ƒg
+        /// å…¨é¸æŠè§£é™¤ã‚¤ãƒ™ãƒ³ãƒˆ
         /// </summary>
         private void ReleaseAllSelectionEvent(object sender, EventArgs e)
         {
@@ -109,7 +109,7 @@ namespace HistoryCleaner
         }
 
         /// <summary>
-        /// ‘S‘I‘ğØ‚è‘Ö‚¦ƒCƒxƒ“ƒg
+        /// å…¨é¸æŠåˆ‡ã‚Šæ›¿ãˆã‚¤ãƒ™ãƒ³ãƒˆ
         /// </summary>
         private void ReverseAllSelectionEvent(object sender, EventArgs e)
         {
