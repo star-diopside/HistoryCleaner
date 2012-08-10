@@ -136,10 +136,6 @@ namespace HistoryCleaner
                     key = Registry.CurrentConfig;
                     break;
 
-                case "HKEY_DYN_DATA":
-                    key = Registry.DynData;
-                    break;
-
                 default:
                     throw new ArgumentException();
             }
