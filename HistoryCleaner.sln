@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C# Express 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryCleaner", "HistoryCleaner\HistoryCleaner.csproj", "{4BBCFD42-3C4E-453B-9E1F-46D4D231D5B5}"
 EndProject
 Global
