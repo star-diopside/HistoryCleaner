@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryCleaner", "HistoryCleaner\HistoryCleaner.csproj", "{4BBCFD42-3C4E-453B-9E1F-46D4D231D5B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HistoryCleanerCore", "HistoryCleanerCore\HistoryCleanerCore.csproj", "{520900F9-C662-424B-A253-AF9F8344B236}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,15 @@ Global
 		{4BBCFD42-3C4E-453B-9E1F-46D4D231D5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BBCFD42-3C4E-453B-9E1F-46D4D231D5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BBCFD42-3C4E-453B-9E1F-46D4D231D5B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{520900F9-C662-424B-A253-AF9F8344B236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{520900F9-C662-424B-A253-AF9F8344B236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{520900F9-C662-424B-A253-AF9F8344B236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{520900F9-C662-424B-A253-AF9F8344B236}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91DE11B1-35F3-4A59-BE36-1EB1CA005DE4}
 	EndGlobalSection
 EndGlobal
