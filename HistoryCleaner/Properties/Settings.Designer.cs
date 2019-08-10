@@ -25,9 +25,9 @@ namespace HistoryCleaner.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Generic.List<HistoryCleaner.RegistryKeyInfo> TargetKeys {
+        public global::System.Collections.Generic.List<HistoryCleaner.Utility.RegistryKeyInfo> TargetKeys {
             get {
-                return ((global::System.Collections.Generic.List<HistoryCleaner.RegistryKeyInfo>)(this["TargetKeys"]));
+                return ((global::System.Collections.Generic.List<HistoryCleaner.Utility.RegistryKeyInfo>)(this["TargetKeys"]));
             }
             set {
                 this["TargetKeys"] = value;
