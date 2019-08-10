@@ -49,8 +49,8 @@ namespace HistoryCleaner.Forms
         /// </summary>
         private void ExecuteEvent(object sender, EventArgs e)
         {
-            RegistryKeyFactory factory = RegistryKeyFactory.Instance;
-            StringBuilder sb = new StringBuilder();
+            var factory = new RegistryKeyFactory();
+            var sb = new StringBuilder();
 
             foreach (ListViewItem item in listViewRegKey.CheckedItems)
             {
@@ -78,12 +78,10 @@ namespace HistoryCleaner.Forms
         {
             try
             {
-                using (var process = new Process())
-                {
-                    process.StartInfo.FileName = "regedit.exe";
-                    process.StartInfo.UseShellExecute = true;
-                    process.Start();
-                }
+                using var process = new Process();
+                process.StartInfo.FileName = "regedit.exe";
+                process.StartInfo.UseShellExecute = true;
+                process.Start();
             }
             catch (Exception)
             {

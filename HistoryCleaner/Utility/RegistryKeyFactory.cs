@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
+using System;
 
 namespace HistoryCleaner.Utility
 {
@@ -8,35 +8,17 @@ namespace HistoryCleaner.Utility
     /// </summary>
     internal class RegistryKeyFactory
     {
-        private static RegistryKeyFactory _instance;
         private string _keyName;
-        private RegistryKey _rootKey;
-        private string _subKeyName;
 
         /// <summary>
         /// RegistryKeyFactory クラスの新しいインスタンスの初期化を行う。
         /// </summary>
-        private RegistryKeyFactory()
+        internal RegistryKeyFactory()
         {
             // フィールドの初期化を行う。
             this._keyName = "HKEY_CURRENT_USER";
-            this._rootKey = GetRegistryRootKey(this._keyName);
-            this._subKeyName = string.Empty;
-        }
-
-        /// <summary>
-        /// RegistryKeyFactory クラスのインスタンスを取得する。
-        /// </summary>
-        public static RegistryKeyFactory Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new RegistryKeyFactory();
-                }
-                return _instance;
-            }
+            this.RootKey = GetRegistryRootKey(this._keyName);
+            this.SubKeyName = string.Empty;
         }
 
         /// <summary>
@@ -55,92 +37,52 @@ namespace HistoryCleaner.Utility
                 {
                     throw new ArgumentNullException();
                 }
+
+                int index = value.IndexOf('\\');
+
+                if (index == -1)
+                {
+                    this.RootKey = GetRegistryRootKey(value);
+                    this.SubKeyName = string.Empty;
+                }
                 else
                 {
-                    int index = value.IndexOf('\\');
-
-                    if (index == -1)
+                    this.RootKey = GetRegistryRootKey(value.Substring(0, index));
+                    while (index < value.Length && value[index] == '\\')
                     {
-                        this._rootKey = GetRegistryRootKey(value);
-                        this._subKeyName = string.Empty;
+                        index++;
                     }
-                    else
-                    {
-                        this._rootKey = GetRegistryRootKey(value.Substring(0, index));
-                        while (index < value.Length && value[index] == '\\')
-                        {
-                            index++;
-                        }
-                        this._subKeyName = value.Substring(index);
-                    }
-
-                    this._keyName = value;
+                    this.SubKeyName = value.Substring(index);
                 }
+
+                this._keyName = value;
             }
         }
 
         /// <summary>
         /// ルートキーを表す RegistryKey オブジェクトを取得する。
         /// </summary>
-        public RegistryKey RootKey
-        {
-            get
-            {
-                return this._rootKey;
-            }
-        }
+        public RegistryKey RootKey { get; private set; }
 
         /// <summary>
         /// ルートキーを含めないレジストリキー名を取得する。
         /// </summary>
-        public string SubKeyName
-        {
-            get
-            {
-                return this._subKeyName;
-            }
-        }
+        public string SubKeyName { get; private set; }
 
         /// <summary>
         /// ルートキー名から RegistryKey オブジェクトを取得する。
         /// </summary>
         /// <param name="rootKeyName">ルートキー名</param>
         /// <returns>ルートキーを表す RegistryKey オブジェクト</returns>
-        private static RegistryKey GetRegistryRootKey(string rootKeyName)
+        private static RegistryKey GetRegistryRootKey(string rootKeyName) => rootKeyName switch
         {
-            RegistryKey key;
-
-            switch (rootKeyName)
-            {
-                case "HKEY_CURRENT_USER":
-                    key = Registry.CurrentUser;
-                    break;
-
-                case "HKEY_LOCAL_MACHINE":
-                    key = Registry.LocalMachine;
-                    break;
-
-                case "HKEY_CLASSES_ROOT":
-                    key = Registry.ClassesRoot;
-                    break;
-
-                case "HKEY_USERS":
-                    key = Registry.Users;
-                    break;
-
-                case "HKEY_PERFORMANCE_DATA":
-                    key = Registry.PerformanceData;
-                    break;
-
-                case "HKEY_CURRENT_CONFIG":
-                    key = Registry.CurrentConfig;
-                    break;
-
-                default:
-                    throw new ArgumentException();
-            }
-
-            return key;
-        }
+            "HKEY_CURRENT_USER" => Registry.CurrentUser,
+            "HKEY_LOCAL_MACHINE" => Registry.LocalMachine,
+            "HKEY_CLASSES_ROOT" => Registry.ClassesRoot,
+            "HKEY_USERS" => Registry.Users,
+            "HKEY_PERFORMANCE_DATA" => Registry.PerformanceData,
+            "HKEY_CURRENT_CONFIG" => Registry.CurrentConfig,
+            _ => throw new ArgumentException()
+        };
     }
 }
