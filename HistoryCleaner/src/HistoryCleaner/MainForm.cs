@@ -77,7 +77,12 @@ namespace HistoryCleaner
         {
             try
             {
-                Process.Start("regedit.exe");
+                using (var process = new Process())
+                {
+                    process.StartInfo.FileName = "regedit.exe";
+                    process.StartInfo.UseShellExecute = true;
+                    process.Start();
+                }
             }
             catch (Exception)
             {
