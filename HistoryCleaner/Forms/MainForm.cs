@@ -1,4 +1,5 @@
-﻿using HistoryCleaner.Utility;
+﻿using HistoryCleaner.Properties;
+using HistoryCleaner.Utility;
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -11,7 +12,6 @@ namespace HistoryCleaner.Forms
         public MainForm()
         {
             InitializeComponent();
-            this.Font = SystemInformation.MenuFont;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -21,12 +21,12 @@ namespace HistoryCleaner.Forms
             // リストビューをクリアする
             listViewRegKey.Items.Clear();
 
-            if (Properties.Settings.Default.TargetKeys != null)
+            if (Settings.Default.TargetKeys != null)
             {
                 // 設定ファイルの情報をリストビューに追加する
-                foreach (RegistryKeyInfo info in Properties.Settings.Default.TargetKeys)
+                foreach (RegistryKeyInfo info in Settings.Default.TargetKeys)
                 {
-                    ListViewItem item = new ListViewItem(info.Description);
+                    var item = new ListViewItem(info.Description);
                     item.SubItems.Add(info.KeyName);
                     listViewRegKey.Items.Add(item);
                 }
