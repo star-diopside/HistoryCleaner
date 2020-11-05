@@ -8,11 +8,11 @@
         /// <summary>
         /// レジストリキーの名前
         /// </summary>
-        public string KeyName { get; set; }
+        public string KeyName { get; set; } = string.Empty;
 
         /// <summary>
         /// レジストリキーの説明
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
     }
 }

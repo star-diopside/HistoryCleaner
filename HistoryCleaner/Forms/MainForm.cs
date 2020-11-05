@@ -2,6 +2,7 @@
 using HistoryCleaner.Utility;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -52,7 +53,7 @@ namespace HistoryCleaner.Forms
             var factory = new RegistryKeyFactory();
             var sb = new StringBuilder();
 
-            foreach (ListViewItem item in listViewRegKey.CheckedItems)
+            foreach (var item in listViewRegKey.CheckedItems.Cast<ListViewItem>())
             {
                 factory.KeyName = item.SubItems[1].Text;
 
@@ -95,7 +96,7 @@ namespace HistoryCleaner.Forms
         /// </summary>
         private void SelectAllEvent(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listViewRegKey.Items)
+            foreach (var item in listViewRegKey.Items.Cast<ListViewItem>())
             {
                 item.Checked = true;
             }
@@ -106,7 +107,7 @@ namespace HistoryCleaner.Forms
         /// </summary>
         private void ReleaseAllSelectionEvent(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listViewRegKey.Items)
+            foreach (var item in listViewRegKey.Items.Cast<ListViewItem>())
             {
                 item.Checked = false;
             }
@@ -117,7 +118,7 @@ namespace HistoryCleaner.Forms
         /// </summary>
         private void ReverseAllSelectionEvent(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listViewRegKey.Items)
+            foreach (var item in listViewRegKey.Items.Cast<ListViewItem>())
             {
                 item.Checked = !item.Checked;
             }
