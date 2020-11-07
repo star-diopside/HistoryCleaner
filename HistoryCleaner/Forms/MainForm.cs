@@ -22,7 +22,7 @@ namespace HistoryCleaner.Forms
             // リストビューをクリアする
             listViewRegKey.Items.Clear();
 
-            if (Settings.Default.TargetKeys != null)
+            if (Settings.Default.TargetKeys is not null)
             {
                 // 設定ファイルの情報をリストビューに追加する
                 foreach (RegistryKeyInfo info in Settings.Default.TargetKeys)

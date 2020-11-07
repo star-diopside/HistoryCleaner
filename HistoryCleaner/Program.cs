@@ -12,7 +12,6 @@ namespace HistoryCleaner
         [STAThread]
         static void Main()
         {
-            ToolStripManager.VisualStylesEnabled = false;
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

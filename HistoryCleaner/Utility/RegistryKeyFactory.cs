@@ -23,7 +23,7 @@ namespace HistoryCleaner.Utility
             set
             {
                 // 設定されたキー名からルートの RegistryKey とサブキー名を設定する
-                if (value == null)
+                if (value is null)
                 {
                     throw new ArgumentNullException(nameof(value));
                 }
