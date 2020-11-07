@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HistoryCleaner.Utility
 {
@@ -8,34 +9,23 @@ namespace HistoryCleaner.Utility
     /// </summary>
     internal class RegistryKeyFactory
     {
-        private string _keyName;
-
-        /// <summary>
-        /// RegistryKeyFactory クラスの新しいインスタンスの初期化を行う。
-        /// </summary>
-        internal RegistryKeyFactory()
-        {
-            // フィールドの初期化を行う。
-            this._keyName = "HKEY_CURRENT_USER";
-            this.RootKey = GetRegistryRootKey(this._keyName);
-            this.SubKeyName = string.Empty;
-        }
+        private string? _keyName;
 
         /// <summary>
         /// ルートキーを含めたレジストリキー名の取得または設定を行う。
         /// </summary>
-        public string KeyName
+        [DisallowNull]
+        public string? KeyName
         {
-            get
-            {
-                return this._keyName;
-            }
+            get => _keyName;
+
+            [MemberNotNull(nameof(RootKey), nameof(SubKeyName))]
             set
             {
                 // 設定されたキー名からルートの RegistryKey とサブキー名を設定する
                 if (value == null)
                 {
-                    throw new ArgumentNullException();
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 int index = value.IndexOf('\\');
@@ -55,19 +45,19 @@ namespace HistoryCleaner.Utility
                     this.SubKeyName = value.Substring(index);
                 }
 
-                this._keyName = value;
+                _keyName = value;
             }
         }
 
         /// <summary>
         /// ルートキーを表す RegistryKey オブジェクトを取得する。
         /// </summary>
-        public RegistryKey RootKey { get; private set; }
+        public RegistryKey? RootKey { get; private set; }
 
         /// <summary>
         /// ルートキーを含めないレジストリキー名を取得する。
         /// </summary>
-        public string SubKeyName { get; private set; }
+        public string? SubKeyName { get; private set; }
 
         /// <summary>
         /// ルートキー名から RegistryKey オブジェクトを取得する。
@@ -82,7 +72,7 @@ namespace HistoryCleaner.Utility
             "HKEY_USERS" => Registry.Users,
             "HKEY_PERFORMANCE_DATA" => Registry.PerformanceData,
             "HKEY_CURRENT_CONFIG" => Registry.CurrentConfig,
-            _ => throw new ArgumentException()
+            _ => throw new ArgumentException("Not Found RegistryKey: " + rootKeyName, nameof(rootKeyName))
         };
     }
 }
