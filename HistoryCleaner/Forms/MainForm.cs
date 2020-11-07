@@ -55,16 +55,15 @@ namespace HistoryCleaner.Forms
 
             foreach (var item in listViewRegKey.CheckedItems.Cast<ListViewItem>())
             {
-                factory.KeyName = item.SubItems[1].Text;
-
                 try
                 {
+                    factory.KeyName = item.SubItems[1].Text;
                     factory.RootKey.DeleteSubKeyTree(factory.SubKeyName);
-                    sb.AppendFormat("{0}\\{1} を削除しました。", factory.RootKey.Name, factory.SubKeyName);
+                    sb.AppendFormat("{0} を削除しました。", factory.KeyName);
                 }
                 catch (Exception ex)
                 {
-                    sb.AppendFormat("{0} : {1}\\{2}", ex.Message, factory.RootKey.Name, factory.SubKeyName);
+                    sb.AppendFormat("{0} : {1}", ex.Message, item.SubItems[1].Text);
                 }
                 sb.AppendLine();
             }
