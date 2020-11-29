@@ -64,7 +64,7 @@ namespace HistoryCleaner.Utility
         /// </summary>
         /// <param name="rootKeyName">ルートキー名</param>
         /// <returns>ルートキーを表す RegistryKey オブジェクト</returns>
-        private static RegistryKey GetRegistryRootKey(string rootKeyName) => rootKeyName switch
+        private static RegistryKey GetRegistryRootKey(string rootKeyName) => rootKeyName.ToUpper() switch
         {
             "HKEY_CURRENT_USER" => Registry.CurrentUser,
             "HKEY_LOCAL_MACHINE" => Registry.LocalMachine,
